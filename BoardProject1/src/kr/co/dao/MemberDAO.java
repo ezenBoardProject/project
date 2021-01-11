@@ -209,5 +209,34 @@ public class MemberDAO {
 		
 		return read(id);
 	}
+	public int loginCheck(String id, String pw) {
+		int i = -1;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		String sql = "select * from mb_tbl where id = ?";
+		String dbpw = "";
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dbpw = rs.getString("password");
+				if (dbpw.equals(pw)) {
+					i = 1;
+				} else {
+					i = 0;
+				}
+			}else {
+				i = -1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseAll(rs, conn, pstmt);
+		}
+		return i;
+	}
 
 }
