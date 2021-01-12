@@ -1,8 +1,6 @@
 package kr.co.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,15 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.command.Command;
-import kr.co.command.CommandAction;
-import kr.co.command.InsertCommand;
-import kr.co.command.InsertUICommand;
-
+import kr.co.command.FindIdCommand;
+import kr.co.command.FindUICommand;
+import kr.co.domain.CommandAction;
 
 /**
  * Servlet implementation class FrontController
  */
-@WebServlet("*.do")
+@WebServlet("/FrontController")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,33 +31,52 @@ public class FrontController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String uri = request.getRequestURI();
-		String cpath = request.getContextPath();
-		String sp = uri.substring(cpath.length());
-		
-		
+		String cPath = request.getContextPath();
+		String sp = uri.substring(cPath.length());
 		Command com = null;
 		
-		if (sp.equalsIgnoreCase("/insetui.do")) {
-			com = new InsertUICommand();
-		}else if (sp.equalsIgnoreCase("/insert.do")) {
-			com = new InsertCommand();
+		if(sp.equalsIgnoreCase("/insertui.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/insert.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/list.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/read.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/updateui.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/update.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/delete.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/search.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/replyui.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/reply.do")) {
+			
+		}else if (sp.equalsIgnoreCase("/findui.do")) {
+			com = new FindUICommand();
+		}else if (sp.equalsIgnoreCase("/find_id.do")) {
+			com = new FindIdCommand();
 		}
 		
-
-		if (com != null) {
-			CommandAction  action = com.execute(request, response);
-
-			if (action.isRedirect()) {
+		if(com != null) {
+			CommandAction action = com.execute(request, response);
+			
+			if(action.isRedirect()) {
 				response.sendRedirect(action.getWhere());
-			} else {
-				RequestDispatcher dis = request.getRequestDispatcher(action.getWhere());
-				dis.forward(request, response);
+			}else {
+				request.getRequestDispatcher(action.getWhere())
+				.forward(request, response);
 			}
 		}
 		
+		
 	}
+
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
