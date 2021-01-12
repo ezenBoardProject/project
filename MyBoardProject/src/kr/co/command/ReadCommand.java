@@ -10,26 +10,20 @@ import kr.co.domain.MemberDAO;
 import kr.co.ezen.MemberDTO;
 import kr.co.util.CommandAction;
 
-public class UpdateCommand implements Command {
+public class ReadCommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
 		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		String pw = request.getParameter("pw");
-		String birth = request.getParameter("birth");
-		String email = request.getParameter("email");
-		String sTel = request.getParameter("tel");
 		
-		int tel = Integer.parseInt(sTel);
+		MemberDTO dto = new MemberDAO().read(id);
 		
-		MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel);
-	
-		new MemberDAO().update(dto);
+		request.setAttribute("dto", dto);
 		
-		return new CommandAction(true, "read.do?id="+id);
+		
+		return new CommandAction(false, "read.jsp");
 	}
 
 }

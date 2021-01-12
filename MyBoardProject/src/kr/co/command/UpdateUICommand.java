@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.domain.MemberDAO;
+import kr.co.ezen.LoginDTO;
 import kr.co.ezen.MemberDTO;
 import kr.co.util.CommandAction;
 
@@ -18,18 +19,32 @@ public class UpdateUICommand implements Command {
 			throws IOException, ServletException {
 		
 		HttpSession session = request.getSession(false);
-		
+
 		if (session == null) {
 			return new CommandAction(true, "loginui.do");
 		}
 		
+		LoginDTO login = (LoginDTO) session.getAttribute("login");
 		
+		if(login == null) {
+			return new CommandAction(true, "loginui.do");
+		}
+		
+
 		String id = request.getParameter("id");
 		
-		MemberDTO dto = new MemberDAO().updateui(id);
+		if(!id.equals(login.getId())) {
+			return new CommandAction(true, "loginui.do");
+		}
+		
+		MemberDAO dao = new MemberDAO();
+		MemberDTO dto = dao.updateui(id);
+		
 		request.setAttribute("dto", dto);
 		
+
 		return new CommandAction(false, "update.jsp");
+		
 	}
 
 }

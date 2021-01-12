@@ -10,26 +10,25 @@ import kr.co.domain.MemberDAO;
 import kr.co.ezen.MemberDTO;
 import kr.co.util.CommandAction;
 
-public class UpdateCommand implements Command {
+public class IdCheckCommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
 		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		String pw = request.getParameter("pw");
-		String birth = request.getParameter("birth");
-		String email = request.getParameter("email");
-		String sTel = request.getParameter("tel");
+		String msg = null;
+		MemberDTO dto = new MemberDAO().idCheck(id);
 		
-		int tel = Integer.parseInt(sTel);
+		if (dto == null) {
+			msg = "사용할 수 있는 ID입니다.";
+		} else {
+			msg = "이미 존재하는 ID입니다.";
+		}
 		
-		MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel);
-	
-		new MemberDAO().update(dto);
+		request.setAttribute("msg", msg);
 		
-		return new CommandAction(true, "read.do?id="+id);
+		return new CommandAction(false, "result.jsp");
 	}
 
 }

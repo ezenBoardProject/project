@@ -5,31 +5,36 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.domain.MemberDAO;
-import kr.co.ezen.MemberDTO;
+import kr.co.ezen.LoginDTO;
 import kr.co.util.CommandAction;
 
-public class UpdateCommand implements Command {
+public class LoginCommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
 		String id = request.getParameter("id");
-		String name = request.getParameter("name");
 		String pw = request.getParameter("pw");
-		String birth = request.getParameter("birth");
-		String email = request.getParameter("email");
-		String sTel = request.getParameter("tel");
 		
-		int tel = Integer.parseInt(sTel);
+		LoginDTO loginDTO = new LoginDTO();
 		
-		MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel);
+		loginDTO.setId(id);
+		loginDTO.setPw(pw);
+		
+		MemberDAO dao = new MemberDAO();
+		
+		LoginDTO login = dao.login(loginDTO);
+		
+		HttpSession session = request.getSession();
 	
-		new MemberDAO().update(dto);
+		session.setAttribute("login", login);
 		
 		return new CommandAction(true, "read.do?id="+id);
+		
 	}
 
 }
