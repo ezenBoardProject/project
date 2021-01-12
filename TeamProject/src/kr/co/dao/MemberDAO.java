@@ -102,6 +102,8 @@ public class MemberDAO {
 	}
 	public String findId(String name, String email) {
 		String id = null;
+	
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "select id from mb_tbl where name = ? and email = ?";
@@ -113,7 +115,7 @@ public class MemberDAO {
 			pstmt.setString(1, name);
 			pstmt.setString(2, email);
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
+			if(rs.next()) {
 				id = rs.getString("id");
 				
 			}
@@ -126,4 +128,34 @@ public class MemberDAO {
 		
 		return id;
 	}
+	public String findPw(String name, String email) {
+		String pw = null;
+	
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "select pw from mb_tbl where name = ? and email = ?";
+		ResultSet rs = null;
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				pw = rs.getString("pw");
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			CloseAll(rs, conn, pstmt);
+		}
+		
+		
+		return pw;
+	}
+
+
 }

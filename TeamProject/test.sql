@@ -36,3 +36,5 @@ birth varchar2(10) not null,
 tel number(11) not null
 )
 insert into mb_tbl values('rmh63','kim','navercom','123123','sysdate',0102632959)
+select * from mb_tbl
+select id from mb_tbl where name = 'kim' and email = 'navercom'

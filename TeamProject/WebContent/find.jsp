@@ -7,22 +7,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아이디 비밀번호 찾기</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+<a href="main.jsp">메인</a>
 <p>아이디찾기</p>
-   <form action="find_id.do" method="post">
+   <form action="findid.do" method="post">
     이름 <input type="text" name="name" placeholder="이름" required><br>
     이메일 <input type="text" name="email" placeholder="이메일" required><br>
-    <input type="submit" value="확인"><br>
+    <input type="submit" value="확인" class="findid"><br>
 </form>
 
            <p>비밀번호찾기</p>
-            <form action="find_pw.jsp" method="post">
+            <form action="findpw.do" method="post">
                 이름<input type="text" name="name" placeholder="이름" required><br>
                 이메일<input type="text" name="email" placeholder=" 이메일" required><br>
-        <input type="submit" value="확인">
+        <input type="submit" value="확인" class="findpw">
         </form>
+
 </body>
 </html>

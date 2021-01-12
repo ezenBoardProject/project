@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.command.Command;
 import kr.co.command.FindIdCommand;
+import kr.co.command.FindPWCommand;
 import kr.co.command.FindUICommand;
 import kr.co.domain.CommandAction;
 
 /**
  * Servlet implementation class FrontController
  */
-@WebServlet("/FrontController")
+@WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -58,10 +59,11 @@ public class FrontController extends HttpServlet {
 			
 		}else if (sp.equalsIgnoreCase("/findui.do")) {
 			com = new FindUICommand();
-		}else if (sp.equalsIgnoreCase("/find_id.do")) {
+		}else if (sp.equalsIgnoreCase("/findid.do")) {
 			com = new FindIdCommand();
+		}else if (sp.equalsIgnoreCase("/findpw.do")) {
+			com = new FindPWCommand();
 		}
-		
 		if(com != null) {
 			CommandAction action = com.execute(request, response);
 			
