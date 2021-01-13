@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.dao.MemberDAO;
 import kr.co.domain.CommandAction;
-import kr.co.domain.MemberDTO;
+
 
 public class FindIdCommand implements Command{
 
@@ -19,7 +19,6 @@ public class FindIdCommand implements Command{
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String id = new MemberDAO().findId(name, email);
-		System.out.println(id);
 		if (id == null) {
 			return new CommandAction(true, "find.jsp");
 		}

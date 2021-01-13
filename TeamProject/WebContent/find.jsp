@@ -9,22 +9,25 @@
 <meta charset="UTF-8">
 <title>아이디 비밀번호 찾기</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="find.css">
 </head>
 <body>
-<a href="main.jsp">메인</a>
-<p>아이디찾기</p>
-   <form action="findid.do" method="post">
-    이름 <input type="text" name="name" placeholder="이름" required><br>
-    이메일 <input type="text" name="email" placeholder="이메일" required><br>
-    <input type="submit" value="확인" class="findid"><br>
+
+<div class="find">
+	<div class="find-riangle"></div>
+<h2 class="find-header">아이디찾기</h2>
+   <form action="findid.do" method="post" class="find-container">
+   <p>이름 <input type="text" name="name" placeholder="이름" required></p>
+   <p>이메일 <input type="text" name="email" placeholder="이메일" required></p>
+   <p><input type="submit" value="확인"></p>
 </form>
 
-           <p>비밀번호찾기</p>
-            <form action="findpw.do" method="post">
-                이름<input type="text" name="name" placeholder="이름" required><br>
-                이메일<input type="text" name="email" placeholder=" 이메일" required><br>
-        <input type="submit" value="확인" class="findpw">
+           <h2 class="find-header2">비밀헌호찾기</h2>
+            <form action="findpw.do" method="post" class="find-container">
+               <p>이름<input type="text" name="name" placeholder="이름" required></p>
+               <p>이메일<input type="text" name="email" placeholder=" 이메일" required></p>
+        	<p><input type="submit" value="확인" ></p>
         </form>
-
+</div>
 </body>
 </html>

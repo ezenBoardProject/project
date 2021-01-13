@@ -13,7 +13,7 @@
 <body>
 <script type="text/javascript">
 alert("비민번호는'${pw}'입니다");
-history.back();
+history.go(-2);
 </script>
 </body>
 </html>

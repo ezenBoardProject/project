@@ -13,7 +13,7 @@
 <body>
 <script type="text/javascript">
 alert("아이디는'${id}입니다");
-history.back();
+history.go(-2);
 </script>
 </body>
 </html>
