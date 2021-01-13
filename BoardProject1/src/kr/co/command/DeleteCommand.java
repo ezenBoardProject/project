@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.dao.MemberDAO;
 import kr.co.domain.CommandAction;
+import kr.co.domain.MemberDTO;
 
 public class DeleteCommand implements Command {
 
@@ -17,24 +18,26 @@ public class DeleteCommand implements Command {
 			throws IOException, ServletException {
 		
 		HttpSession session = request.getSession(false);
-		if (session == null) {
+		if(session == null) {
 			return new CommandAction(true, "loginui.do");
 		}
 		
 		LoginDTO login = (LoginDTO) session.getAttribute("login");
-		if (login == null) {
+		
+		if(login == null) {
 			return new CommandAction(true, "loginui.do");
 		}
-		
+			
 		String id = request.getParameter("id");
-		if (!id.equals(login.getId())) {
+		
+		if(!id.equals(login.getId())) {
 			return new CommandAction(true, "loginui.do");
+		} else {		
+				MemberDAO dao = new MemberDAO();
+				dao.delete(id);
 		}
 		
-		MemberDAO dao = new MemberDAO();
-		dao.delete(id);
-				
-		return new CommandAction(true, "list.do");
+		return new CommandAction(true, "main.jsp");
 	}
 
 }
