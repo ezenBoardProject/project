@@ -1,25 +1,29 @@
 package kr.co.command;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import kr.co.dao.MemberDAO;
 import kr.co.domain.CommandAction;
+import kr.co.domain.MemberDTO;
 
-public class LogoutCommand implements Command {
+
+public class ListCommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		HttpSession session = request.getSession(false);
-		if (session!=null) {
-			session.invalidate();
-			return new CommandAction(true, "login.jsp");
-		}
-		return new CommandAction(true, "login.jsp");
+
+		MemberDAO dao = new MemberDAO();
+		List<MemberDTO> list = dao.list();
+		
+		request.setAttribute("list", list);
+		
+		return new CommandAction(false, "list.jsp");
 	}
 
 }

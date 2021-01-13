@@ -22,7 +22,7 @@
    <p><input type="submit" value="확인"></p>
 </form>
 
-           <h2 class="find-header2">비밀헌호찾기</h2>
+           <h2 class="find-header2">비밀번호찾기</h2>
             <form action="findpw.do" method="post" class="find-container">
                <p>이름<input type="text" name="name" placeholder="이름" required></p>
                <p>이메일<input type="text" name="email" placeholder=" 이메일" required></p>

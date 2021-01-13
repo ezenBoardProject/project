@@ -29,10 +29,10 @@ select * from menu
 drop table mb_tbl
 create table mb_tbl(
 id varchar2(10) primary key,
-name varchar2(10) not null,
+name varchar2(20) not null,
 email varchar2(40) not null,
 pw varchar2(11) not null,
-birth varchar2(10) not null,
+birth date not null,
 tel number(11) not null
 )
 insert into mb_tbl values('rmh63','kim','navercom','123123','sysdate',0102632959)

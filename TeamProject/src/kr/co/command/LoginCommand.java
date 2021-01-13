@@ -35,7 +35,7 @@ public class LoginCommand implements Command{
 			return new CommandAction(true, "loginui.do");
 		} 
 		
-		return new CommandAction(true, "main.jsp");
+		return new CommandAction(true, "list.do");
 	}
 
 }

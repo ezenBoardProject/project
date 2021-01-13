@@ -8,9 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.command.Command;
+import kr.co.command.DeleteCommand;
 import kr.co.command.FindIdCommand;
 import kr.co.command.FindPWCommand;
 import kr.co.command.FindUICommand;
+import kr.co.command.InsertCommand;
+import kr.co.command.InsertUICommand;
+import kr.co.command.ListCommand;
+import kr.co.command.LoginCommand;
+import kr.co.command.LoginUICommand;
+import kr.co.command.LogoutCommand;
+import kr.co.command.ReadCommand;
+import kr.co.command.UpdateCommand;
+import kr.co.command.UpdateUICommand;
 import kr.co.domain.CommandAction;
 
 /**
@@ -38,32 +48,34 @@ public class FrontController extends HttpServlet {
 		Command com = null;
 		
 		if(sp.equalsIgnoreCase("/insertui.do")) {
-			
+			com = new InsertUICommand();
 		}else if(sp.equalsIgnoreCase("/insert.do")) {
-			
+			com = new InsertCommand();
 		}else if(sp.equalsIgnoreCase("/list.do")) {
-			
+			com = new ListCommand();
 		}else if(sp.equalsIgnoreCase("/read.do")) {
-			
+			com = new ReadCommand();
 		}else if(sp.equalsIgnoreCase("/updateui.do")) {
-			
+			com = new UpdateUICommand();
 		}else if(sp.equalsIgnoreCase("/update.do")) {
-			
+			com = new UpdateCommand();
 		}else if(sp.equalsIgnoreCase("/delete.do")) {
-			
-		}else if(sp.equalsIgnoreCase("/search.do")) {
-			
-		}else if(sp.equalsIgnoreCase("/replyui.do")) {
-			
-		}else if(sp.equalsIgnoreCase("/reply.do")) {
-			
+			com = new DeleteCommand();
 		}else if (sp.equalsIgnoreCase("/findui.do")) {
 			com = new FindUICommand();
 		}else if (sp.equalsIgnoreCase("/findid.do")) {
 			com = new FindIdCommand();
 		}else if (sp.equalsIgnoreCase("/findpw.do")) {
 			com = new FindPWCommand();
+		}else if (sp.equalsIgnoreCase("/loginui.do")) {
+			com = new LoginUICommand();
+		}else if (sp.equalsIgnoreCase("/login.do")) {
+			com = new LoginCommand();
+		}else if (sp.equalsIgnoreCase("/logout.do")) {
+			com = new LogoutCommand();
 		}
+			
+		
 		if(com != null) {
 			CommandAction action = com.execute(request, response);
 			

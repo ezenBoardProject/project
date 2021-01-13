@@ -17,7 +17,7 @@
   
   <h2 class="login-header">Log in</h2>
 
-  <form action="loginui.do" method="post" class="login-container">
+  <form action="login.do" method="post" class="login-container">
     <p><input name="id"  placeholder="아이디를 입력해주세요"></p>
     <p><input name="pw" type="password" placeholder="비밀번호를 입력해주세요"></p>
     <p><input type="submit" value="로그인"></p>
