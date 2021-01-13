@@ -11,18 +11,12 @@
 <meta charset="UTF-8">
 <title>회원 정보 수정</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<style type="text/css">
-
-	#a1{
-		font-size: 12px;
-		color: red;
-	}
-	
-</style>
 </head>
 <body>
 
-${dto.name}님, 환영합니다!&nbsp;&nbsp;<a href="logout.do">로그아웃</a>
+<c:choose>
+	<c:when test="${empty login}">&nbsp;</c:when>
+</c:choose>
 
 <h2>회원 정보 수정</h2>
 <h3>회원 정보를 수정 할 수 있습니다.</h3>
@@ -50,8 +44,7 @@ ${dto.name}님, 환영합니다!&nbsp;&nbsp;<a href="logout.do">로그아웃</a>
 			
 			<tr>	
 				<td>생년월일</td>
-				<td><input name="birth" type="date" value="${dto.birth}"><br>
-					<a id="a1">생년월일을 반드시 입력하세요</a> </td>
+				<td><input name="birth" type="text" value="${dto.birth}" ></td>
 			</tr>
 			
 			<tr>
@@ -80,15 +73,16 @@ ${dto.name}님, 환영합니다!&nbsp;&nbsp;<a href="logout.do">로그아웃</a>
 			var pw1 = $("input[name='pw']").val();
 			var pw2 = $("input[name='pw2']").val();
 			
+			
 			if(pw1 != pw2){
 				$("input[name='pw2']").focus();
 				$("input[name='pw2']").select();
 				return;
 			}
 			
+			
 			$("form").submit();
 		});
-		
 		
 	});
 

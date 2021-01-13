@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.command.Command;
+import kr.co.command.DeleteCommand;
 import kr.co.command.IdCheckCommand;
 import kr.co.command.InsertCommand;
 import kr.co.command.InsertUICommand;
+import kr.co.command.ListCommand;
 import kr.co.command.LoginCommand;
 import kr.co.command.LoginUICommand;
 import kr.co.command.LogoutCommand;
@@ -65,6 +67,10 @@ public class FrontController extends HttpServlet {
 			com = new IdCheckCommand();
 		} else if (sp.equalsIgnoreCase("/logout.do")) {
 			com = new LogoutCommand();
+		} else if (sp.equalsIgnoreCase("/delete.do")) {
+			com = new DeleteCommand();
+		} else if (sp.equalsIgnoreCase("/list.do")) {
+			com = new ListCommand();
 		}
 		
 		

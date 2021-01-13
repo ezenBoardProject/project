@@ -33,7 +33,7 @@ public class LoginCommand implements Command {
 	
 		session.setAttribute("login", login);
 		
-		return new CommandAction(true, "read.do?id="+id);
+		return new CommandAction(true, "list.do");
 		
 	}
 

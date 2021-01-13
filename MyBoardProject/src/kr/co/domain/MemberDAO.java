@@ -3,6 +3,8 @@ package kr.co.domain;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -53,7 +55,7 @@ public class MemberDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM mb_tbl WHERE id = ? ";
+		String sql = "SELECT name, pw, email, to_char(birth, 'yyyy-mm-dd') birth, tel FROM mb_tbl WHERE id = ? ";
 		
 		try {
 			
@@ -136,6 +138,66 @@ public class MemberDAO {
 		
 	}
 	
+	
+
+	public MemberDTO read(String id) {
+		
+		MemberDTO dto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT id, name, email, to_char(birth, 'yyyy-mm-dd') birth, pw, tel FROM mb_tbl WHERE id = ? ";
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				String name = rs.getString("name");
+				String birth = rs.getString("birth");
+				String pw = rs.getString("pw");
+				String email = rs.getString("email");
+				int tel = rs.getInt("tel");
+				
+				dto = new MemberDTO(id, name, email, pw, birth, tel);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		
+		return dto;
+	}
+	
+	
+	public void delete(String id) {
+
+ 		Connection conn = null;
+ 		PreparedStatement pstmt = null;
+ 		
+ 		String sql = "DELETE FROM mb_tbl WHERE id=?";
+
+ 		try {
+ 			
+ 			conn = dataFactory.getConnection();
+ 			pstmt = conn.prepareStatement(sql);
+ 			pstmt.setString(1, id);
+
+ 			pstmt.executeUpdate();
+ 			
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			closeAll(null, pstmt, conn);
+ 		}
+ 	}
 	
 	
 	
@@ -251,41 +313,6 @@ public class MemberDAO {
 		return dto;
 	}
 
-	public MemberDTO read(String id) {
-		
-		MemberDTO dto = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "SELECT id, name, email, to_char(birth, 'yyyy-mm-dd') birth, pw, tel FROM mb_tbl WHERE id = ? ";
-		
-		try {
-			conn = dataFactory.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, id);
-			
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				String name = rs.getString("name");
-				String birth = rs.getString("birth");
-				String pw = rs.getString("pw");
-				String email = rs.getString("email");
-				int tel = rs.getInt("tel");
-				
-				dto = new MemberDTO(id, name, email, pw, birth, tel);
-			}
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeAll(rs, pstmt, conn);
-		}
-		
-		return dto;
-	}
 	
 	public boolean loginCheck(LoginDTO dto) {
 		
@@ -311,5 +338,39 @@ public class MemberDAO {
 
  		return check;
 	}
-	
+
+	public List<MemberDTO> list() {
+		
+		List<MemberDTO> list = new ArrayList<MemberDTO>();
+
+ 		Connection conn = null;
+ 		PreparedStatement pstmt = null;
+ 		String sql = "SELECT * FROM mb_tbl";
+ 		ResultSet rs = null;
+
+ 		try {
+ 			conn = dataFactory.getConnection();
+ 			pstmt = conn.prepareStatement(sql);
+ 			rs = pstmt.executeQuery();
+
+ 			while (rs.next()) {
+ 				String id = rs.getString("id");
+ 				String name = rs.getString("name");
+ 				String email = rs.getString("email");
+ 				String pw = rs.getString("pw");
+ 				String birth = rs.getString("birth");
+ 				int tel = rs.getInt("tel");
+
+ 				MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel);
+ 				list.add(dto);
+ 			}
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 		} finally {
+ 			closeAll(rs, pstmt, conn);
+ 		}
+ 		return list;
+	}
+
+
 }
