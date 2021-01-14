@@ -38,3 +38,26 @@ tel number(11) not null
 insert into mb_tbl values('rmh63','kim','navercom','123123','sysdate',0102632959)
 select * from mb_tbl
 select id from mb_tbl where name = 'kim' and email = 'navercom'
+drop table bd_tbl
+create table bd_tbl(
+num number primary key,
+author varchar2(40) not null,
+title varchar2(40) not null,
+conten varchar2(200) not null,
+writeday date not null,
+repRoot number not null,
+repStep number not null,
+repIndent number not null
+)
+CREATE TABLE bd_tbl(
+	id varchar2(10) not null,
+	num NUMBER(4) PRIMARY KEY,
+	title VARCHAR2(100) NOT NULL,
+	content VARCHAR2(2000) NOT NULL,
+	writeday DATE DEFAULT SYSDATE,
+	readcnt NUMBER(6) DEFAULT 0,
+	repRoot NUMBER(4),
+	repStep NUMBER(4),
+	repIndent NUMBER(2),
+	constraint fk_bd_tbl_id foreign key(id) references mb_tbl(id)
+)

@@ -19,6 +19,7 @@ import kr.co.command.LoginCommand;
 import kr.co.command.LoginUICommand;
 import kr.co.command.LogoutCommand;
 import kr.co.command.ReadCommand;
+
 import kr.co.command.UpdateCommand;
 import kr.co.command.UpdateUICommand;
 import kr.co.domain.CommandAction;
@@ -73,6 +74,26 @@ public class FrontController extends HttpServlet {
 			com = new LoginCommand();
 		}else if (sp.equalsIgnoreCase("/logout.do")) {
 			com = new LogoutCommand();
+		}else if(sp.equalsIgnoreCase("/bd_insertui.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/bd_insert.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/bd_list.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/bd_read.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/bd_updateui.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/bd_update.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/bd_delete.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/bd_search.do")) {
+			
+		}else if(sp.equalsIgnoreCase("/bd_replyui.do")) {
+			com = new kr.co.boardcommand.ReplyUICommand();
+		}else if(sp.equalsIgnoreCase("/bd_reply.do")) {
+			com = new kr.co.boardcommand.ReplyCommand();
 		}
 			
 		
