@@ -3,6 +3,7 @@ package kr.co.domain;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,170 +115,31 @@ public class MemberDAO {
 	public void insert(MemberDTO dto) {
 		
 		Connection conn = null;
- 		PreparedStatement pstmt = null;
- 		String sql = "INSERT INTO mb_tbl (id, name, email, pw, birth, tel) VALUES (?,?,?,?,?,?)";
-
- 		try {
- 			conn = dataFactory.getConnection();
- 			pstmt = conn.prepareStatement(sql);
-
- 			pstmt.setString(1, dto.getId());
- 			pstmt.setString(2, dto.getName());
- 			pstmt.setString(3, dto.getEmail());
- 			pstmt.setString(4, dto.getPw());
- 			pstmt.setString(5, dto.getBirth());
- 			pstmt.setInt(6, dto.getTel());
-
- 			pstmt.executeUpdate();
-
- 		} catch (Exception e) {
- 			e.printStackTrace();
- 		}finally {
- 			closeAll(null, pstmt, conn);
- 		}
-		
-	}
-	
-	
-
-	public MemberDTO read(String id) {
-		
-		MemberDTO dto = null;
-		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "SELECT id, name, email, to_char(birth, 'yyyy-mm-dd') birth, pw, tel FROM mb_tbl WHERE id = ? ";
-		
+		String sql = "INSERT INTO mb_tbl (id, name, email, pw, birth, tel)"
+				+ " VALUES (?,?,?,?,?,?)";
+
 		try {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, id);
-			
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				String name = rs.getString("name");
-				String birth = rs.getString("birth");
-				String pw = rs.getString("pw");
-				String email = rs.getString("email");
-				int tel = rs.getInt("tel");
-				
-				dto = new MemberDTO(id, name, email, pw, birth, tel);
-			}
-			
-			
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getName());
+			pstmt.setString(3, dto.getEmail());
+			pstmt.setString(4, dto.getPw());
+			pstmt.setString(5, dto.getBirth());
+			pstmt.setInt(6, dto.getTel());
+
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			closeAll(rs, pstmt, conn);
+			closeAll(null, pstmt, conn);
 		}
-		
-		return dto;
 	}
 	
 	
-	public void delete(String id) {
-
- 		Connection conn = null;
- 		PreparedStatement pstmt = null;
- 		
- 		String sql = "DELETE FROM mb_tbl WHERE id=?";
-
- 		try {
- 			
- 			conn = dataFactory.getConnection();
- 			pstmt = conn.prepareStatement(sql);
- 			pstmt.setString(1, id);
-
- 			pstmt.executeUpdate();
- 			
- 		} catch (Exception e) {
- 			e.printStackTrace();
- 		} finally {
- 			closeAll(null, pstmt, conn);
- 		}
- 	}
 	
-	
-	
-	public int loginCheck(String id, String pw) {
- 		
-		int i = -1;
- 		
-		Connection conn = null;
- 		PreparedStatement pstmt = null;
- 		ResultSet rs =null;
- 		String sql = "select * from mb_tbl where id = ?";
- 		String dbpw = "";
- 		
- 		try {
- 			conn = dataFactory.getConnection();
- 			pstmt = conn.prepareStatement(sql);
- 			pstmt.setString(1, id);
- 			rs = pstmt.executeQuery();
- 			if (rs.next()) {
- 				
- 				dbpw = rs.getString("password");
- 				
- 				if (dbpw.equals(pw)) {
- 					i = 1;
- 				} else {
- 					i = 0;
- 				}
- 				
- 			}else {
- 				i = -1;
- 			}
- 			
- 		} catch (Exception e) {
- 			e.printStackTrace();
- 		} finally {
- 			closeAll(rs, pstmt, conn);
- 		}
- 		
- 		return i;
- 	}
-
-	public LoginDTO login(LoginDTO loginDTO) {
-		
-		LoginDTO result = new LoginDTO();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "SELECT * FROM mb_tbl WHERE id = ? AND pw = ? ";
-		
-		try {
-			conn = dataFactory.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, loginDTO.getId());
-			pstmt.setString(2, loginDTO.getPw());
-			
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				
-				String name = rs.getString("name");
-				
-				result = new LoginDTO();
-				
-				result.setId(loginDTO.getId());
-				result.setPw(loginDTO.getPw());
-				result.setName(name);
-			}
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			closeAll(rs, pstmt, conn);
-		}
-		
-		
-		return result;
-	}
-
 	public MemberDTO idCheck(String id) {
 		
 		MemberDTO dto = null;
@@ -313,64 +175,213 @@ public class MemberDAO {
 		return dto;
 	}
 
+
+
+	public void delete(String id) {
+	
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM mb_tbl WHERE id=?";
+
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			pstmt.executeUpdate();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, conn);
+		}
+	}
+
+	
+	public List<MemberDTO> list() {
+		List<MemberDTO> list = new ArrayList<MemberDTO>();
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "SELECT * FROM mb_tbl";
+		ResultSet rs = null;
+
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				String id = rs.getString("id");
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				String pw = rs.getString("pw");
+				String birth = rs.getString("birth");
+				int tel = rs.getInt("tel");
+
+				MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel);
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+
+	public MemberDTO read(String id) {
+		MemberDTO dto = null;
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "SELECT * FROM mb_tbl WHERE id = ?";
+		ResultSet rs = null;
+
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				String pw = rs.getString("pw");
+				String date = rs.getString("birth");
+				int tel = rs.getInt("tel");
+
+				dto = new MemberDTO(id, name, email, pw, date, tel);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+
+		return dto;
+	}
+	
+	
+	public LoginDTO login(LoginDTO loginDTO) {
+		
+		LoginDTO login = new LoginDTO();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "select * from mb_tbl where id = ? and pw = ?";
+		ResultSet rs = null;
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, loginDTO.getId());
+			pstmt.setString(2, loginDTO.getPw());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				
+				login = new LoginDTO();
+				login.setId(loginDTO.getId());
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return login;
+	}
+	
 	
 	public boolean loginCheck(LoginDTO dto) {
 		
- 		boolean check = false;
- 		Connection conn = null;
- 		PreparedStatement pstmt = null;
- 		String sql = "select * from mb_tbl where id = ? and pw = ?";
- 		ResultSet rs = null;
- 		
- 		try {
- 			conn = dataFactory.getConnection();
- 			pstmt = conn.prepareStatement(sql);
- 			pstmt.setString(1, dto.getId());
- 			pstmt.setString(2, dto.getPw());
- 			rs = pstmt.executeQuery();
- 			check = rs.next();
- 		
- 		} catch (Exception e) {
- 			e.printStackTrace();
- 		} finally {
- 			closeAll(rs, pstmt, conn);
- 		}
-
- 		return check;
-	}
-
-	public List<MemberDTO> list() {
+		boolean check = false;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "select * from mb_tbl where id = ? and pw = ?";
+		ResultSet rs = null;
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getPw());
+			rs = pstmt.executeQuery();
+			check = rs.next();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
 		
-		List<MemberDTO> list = new ArrayList<MemberDTO>();
-
- 		Connection conn = null;
- 		PreparedStatement pstmt = null;
- 		String sql = "SELECT * FROM mb_tbl";
- 		ResultSet rs = null;
-
- 		try {
- 			conn = dataFactory.getConnection();
- 			pstmt = conn.prepareStatement(sql);
- 			rs = pstmt.executeQuery();
-
- 			while (rs.next()) {
- 				String id = rs.getString("id");
- 				String name = rs.getString("name");
- 				String email = rs.getString("email");
- 				String pw = rs.getString("pw");
- 				String birth = rs.getString("birth");
- 				int tel = rs.getInt("tel");
-
- 				MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel);
- 				list.add(dto);
- 			}
- 		} catch (Exception e) {
- 			e.printStackTrace();
- 		} finally {
- 			closeAll(rs, pstmt, conn);
- 		}
- 		return list;
+		return check;
+		
 	}
+	public String findId(String name, String email) {
+		
+		String id = null;
+	
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "select id from mb_tbl where name = ? and email = ?";
+		ResultSet rs = null;
+	
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getString("id");
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		
+		
+		return id;
+	}
+	public String findPw(String name, String email) {
+		
+		String pw = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "select pw from mb_tbl where name = ? and email = ?";
+		ResultSet rs = null;
+		
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, name);
+			pstmt.setString(2, email);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				pw = rs.getString("pw");
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		
+		
+		return pw;
+	}
+	
 
 
+	
 }
+

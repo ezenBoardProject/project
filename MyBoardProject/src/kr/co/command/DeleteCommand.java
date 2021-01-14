@@ -16,8 +16,8 @@ public class DeleteCommand implements Command {
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
-		HttpSession session = request.getSession(false);
+
+ 		HttpSession session = request.getSession(false);
  		if(session == null) {
  			return new CommandAction(true, "loginui.do");
  		}
@@ -36,7 +36,7 @@ public class DeleteCommand implements Command {
 
  		new MemberDAO().delete(id);
 
- 		return new CommandAction(true, "main.jsp");
+ 		return new CommandAction(true, "login.jsp");
 	}
 
 }

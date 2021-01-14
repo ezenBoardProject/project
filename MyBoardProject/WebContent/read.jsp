@@ -1,32 +1,62 @@
+<%@page import="kr.co.domain.MemberDAO"%>
+<%@page import="kr.co.ezen.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-    
+	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>마이페이지</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+	<h2>마이페이지</h2>
 
-${dto.name}님, 환영합니다!&nbsp;&nbsp;<a href="logout.do">로그아웃</a>
-
-	<h2>회원 정보 자세히 보기</h2>
-	ID : ${dto.id}<br>
-	이름 : ${dto.name}<br>
-	e-mail : ${dto.email}<br>
-	생년월일 : ${dto.birth}<br>
-	연락처 : ${dto.tel}<br>
-	
+	<a>${login.id} 님의 페이지입니다.</a>
 	<br>
-	<a href="updateui.do?id=${dto.id}">회원정보 수정</a><br>
-	<a href="deleteui.do?id=${dto.id}">회원 탈퇴</a>
-	
+	<br>
+
+	<br>
+	<input type="button"
+		onclick="location.href='updateui.do?id=${login.id}'" value="회원정보 수정">
+
+	<input type="button" onclick="location.href='list.do'" value="돌아가기">
+
+	<br>
+	<br>
+	<input type="button" onclick="location.href='logout.do?id=${login.id}'"
+		value="로그아웃">
+	<br>
+	<br>
+
+	<input class="del" type="button"
+		onclick="location.href='delete.do?id=${login.id}'" id="del"
+		value="회원 탈퇴">
+	<br>
+
+	<script type="text/javascript">
+      
+      $(document).ready(function(){
+         
+         $("#del").click(function(){
+            
+            var choice;
+            var url = "delete.do?id=${login.id}";
+            choice = confirm("정말로 탈퇴하시겠습니까?");
+            
+            if (choice) {
+               location.replace(url);
+            } else {
+               location.replace("read.do?id=${login.id}");
+            }
+            
+         });
+
+      });
+   
+   </script>
 
 </body>
 </html>

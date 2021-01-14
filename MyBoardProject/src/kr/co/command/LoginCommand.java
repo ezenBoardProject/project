@@ -20,20 +20,23 @@ public class LoginCommand implements Command {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		
-		LoginDTO loginDTO = new LoginDTO();
 		
+		LoginDTO loginDTO = new LoginDTO();
 		loginDTO.setId(id);
 		loginDTO.setPw(pw);
 		
 		MemberDAO dao = new MemberDAO();
-		
-		LoginDTO login = dao.login(loginDTO);
-		
+		LoginDTO  login= dao.login(loginDTO);
+		boolean check = dao.loginCheck(loginDTO);
 		HttpSession session = request.getSession();
-	
-		session.setAttribute("login", login);
 		
-		return new CommandAction(true, "list.do");
+		if (check) {
+			session.setAttribute("login", login);
+		} else {
+			return new CommandAction(true, "loginui.do");
+		} 
+		
+		return new CommandAction(true, "bd_list.jsp");
 		
 	}
 

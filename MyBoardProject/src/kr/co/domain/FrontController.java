@@ -9,8 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.co.boardcommand.BoardContentReadCommand;
+import kr.co.boardcommand.BoardInsertCommand;
+import kr.co.boardcommand.BoardInsertUICommand;
+import kr.co.boardcommand.BoardListCommand;
+import kr.co.boardcommand.BoardSearchCommand;
+import kr.co.command.BoardReadCommand;
 import kr.co.command.Command;
 import kr.co.command.DeleteCommand;
+import kr.co.command.FindIdCommand;
+import kr.co.command.FindPWCommand;
+import kr.co.command.FindUICommand;
 import kr.co.command.IdCheckCommand;
 import kr.co.command.InsertCommand;
 import kr.co.command.InsertUICommand;
@@ -46,7 +55,7 @@ public class FrontController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String cpath = request.getContextPath();
 		String sp = uri.substring(cpath.length());
-		
+				
 		Command com = null;
 		
 		if (sp.equalsIgnoreCase("/insertui.do")) {
@@ -55,6 +64,8 @@ public class FrontController extends HttpServlet {
 			com = new InsertCommand();
 		} else if(sp.equalsIgnoreCase("/read.do")) {
 			com = new ReadCommand();
+		} else if(sp.equalsIgnoreCase("/boardread.do")) {
+			com = new BoardReadCommand();
 		} else if(sp.equalsIgnoreCase("/updateui.do")) {
 			com = new UpdateUICommand();
 		} else if(sp.equalsIgnoreCase("/update.do")) {
@@ -71,6 +82,22 @@ public class FrontController extends HttpServlet {
 			com = new DeleteCommand();
 		} else if (sp.equalsIgnoreCase("/list.do")) {
 			com = new ListCommand();
+		} else if (sp.equalsIgnoreCase("/findui.do")) {
+			com = new FindUICommand();
+		} else if (sp.equalsIgnoreCase("/findid.do")) {
+			com = new FindIdCommand();
+		} else if (sp.equalsIgnoreCase("/findpw.do")) {
+			com = new FindPWCommand();
+		} else if (sp.equalsIgnoreCase("/bd_list.do")) {
+			com = new BoardListCommand();
+		} else if (sp.equalsIgnoreCase("/bd_search.do")) {
+			com = new BoardSearchCommand();
+		} else if (sp.equalsIgnoreCase("/bd_insertui.do")) {
+			com = new BoardInsertUICommand();
+		} else if (sp.equalsIgnoreCase("/bd_insert.do")) {
+			com = new BoardInsertCommand();
+		} else if (sp.equalsIgnoreCase("/bd_read.do")) {
+			com = new BoardContentReadCommand();
 		}
 		
 		
@@ -92,7 +119,7 @@ public class FrontController extends HttpServlet {
 			
 		}
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

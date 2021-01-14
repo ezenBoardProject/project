@@ -17,25 +17,25 @@ public class InsertCommand implements Command {
 			throws IOException, ServletException {
 		
 		String id = request.getParameter("id");
- 		String pw = request.getParameter("pw");
- 		String name = request.getParameter("name");
- 		String birth = request.getParameter("birth");
- 		String email = request.getParameter("email");
- 		String sTel = request.getParameter("tel");
- 		int tel = 0;
- 		try {
- 			tel = Integer.parseInt(sTel);
- 		} catch (NumberFormatException e) {
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String pw = request.getParameter("pw");
+		String birth = request.getParameter("birth");
+		String sTel = request.getParameter("tel");
+		int tel = 0;
+		try {
+			tel = Integer.parseInt(sTel);
+		} catch (NumberFormatException e) {
+			
+			e.printStackTrace();
+		}
 
- 			e.printStackTrace();
- 		}
+		MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel);
 
- 		MemberDAO dao = new MemberDAO();
- 		MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel);
+		MemberDAO dao  = new MemberDAO();
+		dao.insert(dto);
 
- 		dao.insert(dto);
-
-		return new CommandAction(true, "read.do?id="+id);
+		return new CommandAction(true, "list.do");
 	}
 
 }

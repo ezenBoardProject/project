@@ -34,27 +34,27 @@
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input name="pw" type="password" value="${dto.pw}"></td>
+				<td><input name="pw" type="password" value="${dto.pw}" required/></td>
 			</tr>
 			
 			<tr>
 				<td>비밀번호 확인</td>	
-				<td><input name="pw2" type="password" value="${dto.pw}"></td>
+				<td><input name="pw2" type="password" value="${dto.pw}" required/></td>
 			</tr>
 			
 			<tr>	
 				<td>생년월일</td>
-				<td><input name="birth" type="text" value="${dto.birth}" ></td>
+				<td><input name="birth" type="text" value="${dto.birth}" required/></td>
 			</tr>
 			
 			<tr>
 				<td>e-mail</td>	
-				<td><input name="email" type="email" value="${dto.email}"> </td>
+				<td><input name="email" type="email" value="${dto.email}" required/></td>
 			</tr>
 			
 			<tr>
 				<td>연락처</td>	
-				<td><input name="tel" type="tel" value="${dto.tel}"> </td>
+				<td><input name="tel" type="tel" value="${dto.tel}" required/></td>
 			</tr>
 		
 		</table>
@@ -82,7 +82,9 @@
 			
 			
 			$("form").submit();
+			alert("회원정보 수정이 완료되었습니다.");
 		});
+		
 		
 	});
 
