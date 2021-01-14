@@ -8,14 +8,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>main</title>
+<title>Main</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<h1>main</h1>
-<a href="insertui.do">회원 가입</a>
-<a href="list.do">목록</a>
-<a href="loginui.do">로그인</a>
+<h1>Main</h1>
+<a href="login.do">로그인</a>
 
 </body>
 </html>

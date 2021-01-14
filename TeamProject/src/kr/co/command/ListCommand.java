@@ -8,19 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.dao.MemberDAO;
-import kr.co.dao.MemberDTO;
+import kr.co.domain.CommandAction;
+import kr.co.domain.MemberDTO;
+
 
 public class ListCommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
+
 		MemberDAO dao = new MemberDAO();
 		List<MemberDTO> list = dao.list();
-
+		
 		request.setAttribute("list", list);
-
+		
 		return new CommandAction(false, "list.jsp");
 	}
 

@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.dao.MemberDAO;
-import kr.co.dao.MemberDTO;
+import kr.co.domain.CommandAction;
+import kr.co.domain.MemberDTO;
 
 public class InsertCommand implements Command {
 
@@ -38,7 +39,7 @@ public class InsertCommand implements Command {
 
 
 
-		return new CommandAction(true, "list.do");
+		return new CommandAction(true, "login.jsp");
 	}
 
 }

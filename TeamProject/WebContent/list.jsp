@@ -1,52 +1,34 @@
+<%@page import="kr.co.domain.MemberDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+   pageEncoding="UTF-8"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원목록</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>회원 정보</title>
 </head>
 <body>
+
 <c:choose>
-		<c:when test="${not empty login }">
-		${login.name } 님 환영합니다.
-		<a href="logout.do">로그아웃</a>
-		</c:when>
-		<c:otherwise>
-		<a href="login.do">로그인</a>
-		</c:otherwise>
-	</c:choose>
+   <c:when test="${empty login}">
+      <a href="loginui.do">로그인</a>
+   </c:when>
+    
+   <c:otherwise>
+       ${login.id} 님, 환영합니다.<br><br>
+       <input type="button" onclick="location.href='BoardRead.do'" value="게시글관리">
+      <input type="button" onclick="location.href='read.do'" value="마이페이지"><br><br>
+      <input type="button" onclick="location.href='loginui.do'" value="로그아웃">
+      
+    </c:otherwise>
+</c:choose>
 
-	<h1>회원 목록</h1>
-	<table>
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>NAME</th>
-			</tr>
-		</thead>
+<%--    <c:if test="admin".equals${dto.id}>
+         <input type="button" onclick="admin.do" value="회원관리">
+   </c:if> --%>
 
-		<tbody>
-				<c:forEach items="${list }" var="dto">
-					<tr>
-						<td>
-						<a href="read.do?id=${dto.id }">${dto.id }</a>
-						</td>
-						<td>
-						${dto.name }
-						</td>
-					</tr>
-				</c:forEach>
-				
-				
-		</tbody>
-
-	</table>
 
 </body>
 </html>

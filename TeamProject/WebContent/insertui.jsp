@@ -14,13 +14,13 @@
 <body>
 <h1>회원가입</h1>
 
-	<form action="insert" method="post">
-		아이디: <input name="id" placeholder="아이디를 입력하세요."><button>중복검사</button><span></span><br>
-		이름: <input name="name" placeholder="이름을 입력하세요."><br>
-		e-mail: <input type="email" name="email" placeholder="이메일을 입력하세요."><br>
-		비밀번호: <input type="password" name="pw" placeholder="비밀번호를 입력하세요."><br>		
-		생년월일: <input type="date" name="birth" ><br>
-		전화번호: <input type="tel" name="tel" placeholder="전화번호를 입력하세요"><br>
+	<form action="insert.do" method="post">
+		아이디: <input name="id" placeholder="아이디를 입력하세요." required="required"><button>중복검사</button><span></span><br>
+		이름: <input name="name" placeholder="이름을 입력하세요." required="required"><br>
+		e-mail: <input type="email" name="email" placeholder="이메일을 입력하세요." required="required"><br>
+		비밀번호: <input type="password" name="pw" placeholder="비밀번호를 입력하세요." required="required"><br>		
+		생년월일: <input type="date" name="birth"  required="required"><br>
+		전화번호: <input type="tel" name="tel" placeholder="전화번호를 입력하세요" required="required"><br>
 		<input type="submit" value="등록">
   </form>
   <script type="text/javascript">
@@ -50,5 +50,6 @@
   
   </script>
   
+
 </body>
 </html>

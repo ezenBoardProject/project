@@ -6,9 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public interface Command {
-	CommandAction execute(HttpServletRequest request,
-			HttpServletResponse response)
-			throws IOException, ServletException;
+import kr.co.domain.CommandAction;
 
+public interface Command {
+	public abstract CommandAction execute(HttpServletRequest request, HttpServletResponse response) throws IOException,ServletException;
 }
