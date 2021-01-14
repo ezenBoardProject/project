@@ -1,4 +1,4 @@
-package kr.co.boardcommand;
+package kr.co.domain;
 
 import java.io.Serializable;
 
@@ -8,6 +8,7 @@ public class BoardDTO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private String id;
 	private int num;
 	private String title;
@@ -138,11 +139,6 @@ public class BoardDTO implements Serializable{
 		if (num != other.num)
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "BoardDTO [id=" + id + ", num=" + num + "]";
 	}
 	
 	
