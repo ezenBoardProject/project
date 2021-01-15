@@ -10,29 +10,21 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.command.Command;
 import kr.co.domain.BoardDAO;
 import kr.co.ezen.BoardDTO;
-import kr.co.ezen.PageTO;
 import kr.co.util.CommandAction;
 
-public class BoardListCommand implements Command {
+public class BoardMyListCommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		String sCurPage = request.getParameter("curPage");
-		int curPage = 1;
+		String id = request.getParameter("id");
 		
-		if (sCurPage != null) {
-			curPage = Integer.parseInt(sCurPage);
-		}
+		List<BoardDTO> myList = new BoardDAO().listById(id);
 		
-		BoardDAO dao = new BoardDAO();
-		PageTO to = dao.page(curPage);
+		request.setAttribute("myList", myList);
 		
-		request.setAttribute("list", to.getList());
-		request.setAttribute("to", to);
-		
-		return new CommandAction(false, "bd_list.jsp");
+		return new CommandAction(false, "bd_mylist.jsp");
 	}
 
 }

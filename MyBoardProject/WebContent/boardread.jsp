@@ -16,10 +16,10 @@
 	<a>${login.id} 님의 게시글관리 페이지입니다.</a> <br><br>
 	
 	<a>게시글</a>
-	<a href="BoardReadCommand.do" >0</a><br>
+	<a href="boardread.do" >0</a><br>
 	
 	<a>댓글</a>
-	<a href="BoardReadCommand.do" >0</a><br>
+	<a href="boardread.do" >0</a><br>
 
 </body>
 </html>

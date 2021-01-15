@@ -9,12 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.boardcommand.BoardContentReadCommand;
+import kr.co.boardcommand.BoardReadCommand;
+import kr.co.boardcommand.BoardDeleteCommand;
+import kr.co.boardcommand.BoardDeleteCommand;
 import kr.co.boardcommand.BoardInsertCommand;
 import kr.co.boardcommand.BoardInsertUICommand;
 import kr.co.boardcommand.BoardListCommand;
+import kr.co.boardcommand.BoardMyListCommand;
 import kr.co.boardcommand.BoardSearchCommand;
-import kr.co.command.BoardReadCommand;
+import kr.co.boardcommand.BoardUpdateCommand;
+import kr.co.boardcommand.BoardUpdateUICommand;
+import kr.co.boardcommand.ReplyCommand;
+import kr.co.boardcommand.ReplyUICommand;
 import kr.co.command.Command;
 import kr.co.command.DeleteCommand;
 import kr.co.command.FindIdCommand;
@@ -64,8 +70,6 @@ public class FrontController extends HttpServlet {
 			com = new InsertCommand();
 		} else if(sp.equalsIgnoreCase("/read.do")) {
 			com = new ReadCommand();
-		} else if(sp.equalsIgnoreCase("/boardread.do")) {
-			com = new BoardReadCommand();
 		} else if(sp.equalsIgnoreCase("/updateui.do")) {
 			com = new UpdateUICommand();
 		} else if(sp.equalsIgnoreCase("/update.do")) {
@@ -97,7 +101,19 @@ public class FrontController extends HttpServlet {
 		} else if (sp.equalsIgnoreCase("/bd_insert.do")) {
 			com = new BoardInsertCommand();
 		} else if (sp.equalsIgnoreCase("/bd_read.do")) {
-			com = new BoardContentReadCommand();
+			com = new BoardReadCommand();
+		} else if (sp.equalsIgnoreCase("/bd_delete.do")) {
+			com = new BoardDeleteCommand();
+		} else if (sp.equalsIgnoreCase("/bd_reply.do")) {
+			com = new ReplyCommand();
+		} else if (sp.equalsIgnoreCase("/bd_replyui.do")) {
+			com = new ReplyUICommand();
+		} else if (sp.equalsIgnoreCase("/bd_update.do")) {
+			com = new BoardUpdateCommand();
+		} else if (sp.equalsIgnoreCase("/bd_updateui.do")) {
+			com = new BoardUpdateUICommand();
+		} else if (sp.equalsIgnoreCase("/bd_mylist.do")) {
+			com = new BoardMyListCommand();
 		}
 		
 		

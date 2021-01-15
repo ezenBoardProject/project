@@ -22,6 +22,7 @@ public class LoginCommand implements Command {
 		
 		
 		LoginDTO loginDTO = new LoginDTO();
+		
 		loginDTO.setId(id);
 		loginDTO.setPw(pw);
 		
@@ -36,7 +37,7 @@ public class LoginCommand implements Command {
 			return new CommandAction(true, "loginui.do");
 		} 
 		
-		return new CommandAction(true, "bd_list.jsp");
+		return new CommandAction(true, "bd_list.do");
 		
 	}
 

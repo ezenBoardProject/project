@@ -25,3 +25,6 @@ CREATE TABLE bd_tbl(
 )
 
 SELECT * FROM BD_TBL
+
+SELECT COUNT(num) FROM bd_tbl
+

@@ -21,8 +21,8 @@
 	<br>
 	<input type="button"
 		onclick="location.href='updateui.do?id=${login.id}'" value="회원정보 수정">
-
-	<input type="button" onclick="location.href='list.do'" value="돌아가기">
+	<input type="button" onclick="location.href='bd_mylist.do?id=${login.id}'" value="게시글 관리">
+	<input type="button" onclick="location.href='bd_list.do'" value="돌아가기">
 
 	<br>
 	<br>

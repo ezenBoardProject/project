@@ -14,18 +14,19 @@ import kr.co.util.CommandAction;
 public class BoardInsertCommand implements Command {
 
 	@Override
-	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-		
+ 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
+ 			throws IOException, ServletException {
+ 	
 		String id = request.getParameter("id");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		
-		BoardDTO dto = new BoardDTO(id, 0, title, content, null, 0, 0, 0, 0);
-		
-		new BoardDAO().insert(dto);
-		
-		return new CommandAction(true, "bd_list.do");
-	}
+ 		String title = request.getParameter("title");
+ 		String content = request.getParameter("content");
+
+ 		BoardDTO dto = new BoardDTO(id, -1, title, content, null, 0, 0, 0, 0);
+ 		BoardDAO dao = new BoardDAO();
+ 		dao.insert(dto);
+
+ 		return new CommandAction(true, "bd_list.do");
+ 	}
+
 
 }

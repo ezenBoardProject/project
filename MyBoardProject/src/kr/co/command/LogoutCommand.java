@@ -18,12 +18,14 @@ public class LogoutCommand implements Command {
 		
 		HttpSession session = request.getSession(false);
  		
-		if (session!=null) {
+		if (session != null) {
+			
  			session.invalidate();
- 			return new CommandAction(true, "loginui.do");
+ 			return new CommandAction(true, "bd_list.do");
  		}
  		
-		return new CommandAction(true, "loginui.do");
+		
+		return new CommandAction(true, "bd_list.do");
 
 		}
 
