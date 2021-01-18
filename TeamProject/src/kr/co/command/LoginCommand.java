@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.co.dao.MemberDAO;
-import kr.co.domain.CommandAction;
-import kr.co.domain.LoginDTO;
+import kr.co.domain.MemberDAO;
+import kr.co.util.CommandAction;
+import kr.co.ezen.LoginDTO;
 
 public class LoginCommand implements Command{
 
@@ -35,7 +35,7 @@ public class LoginCommand implements Command{
 			return new CommandAction(true, "loginui.do");
 		} 
 		
-		return new CommandAction(true, "list.do");
+		return new CommandAction(false, "list.do");
 	}
 
 }

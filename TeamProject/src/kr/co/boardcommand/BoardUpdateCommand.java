@@ -9,30 +9,32 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.command.Command;
 import kr.co.domain.BoardDAO;
 import kr.co.util.CommandAction;
-
-
 import kr.co.ezen.BoardDTO;
 
-public class ReplyCommand implements Command {
+public class BoardUpdateCommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
 		String sNum = request.getParameter("num");
- 		int oriNum = Integer.parseInt(sNum);
+ 		int num = -1;
+ 		try {
+ 			num = Integer.parseInt(sNum);
+ 		} catch (NumberFormatException e) {
+
+ 			e.printStackTrace();
+ 		}
 
  		String id = request.getParameter("id");
  		String title = request.getParameter("title");
  		String content = request.getParameter("content");
 
+ 		BoardDTO dto = new BoardDTO(num, id, title, content, null, -1, -1, -1, -1);
 
- 	    BoardDTO repDTO = new BoardDTO(-1, id, title, content, null, -1, -1, -1, -1);
-
- 		new BoardDAO().reply(oriNum, repDTO);
+ 		new BoardDAO().update(dto);
 
  		return new CommandAction(true, "bd_list.do");
- 	}
-	
+	}
 
 }

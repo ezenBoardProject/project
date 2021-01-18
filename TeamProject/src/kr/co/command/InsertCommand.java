@@ -6,9 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.dao.MemberDAO;
-import kr.co.domain.CommandAction;
-import kr.co.domain.MemberDTO;
+import kr.co.domain.MemberDAO;
+import kr.co.util.CommandAction;
+import kr.co.ezen.MemberDTO;
 
 public class InsertCommand implements Command {
 

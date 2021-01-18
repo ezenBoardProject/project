@@ -61,3 +61,5 @@ CREATE TABLE bd_tbl(
 	repIndent NUMBER(2),
 	constraint fk_bd_tbl_id foreign key(id) references mb_tbl(id)
 )
+select * from bd_tbl
+select * from mb_tbl
