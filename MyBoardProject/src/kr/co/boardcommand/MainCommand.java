@@ -1,32 +1,31 @@
-package kr.co.command;
+package kr.co.boardcommand;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import kr.co.command.Command;
+import kr.co.domain.BoardDAO;
+import kr.co.ezen.BoardDTO;
 import kr.co.util.CommandAction;
 
-public class LogoutCommand implements Command {
+public class MainCommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
 		
-		HttpSession session = request.getSession(false);
- 		
-		if (session != null) {
-			
- 			session.invalidate();
- 			return new CommandAction(true, "main.do");
- 		}
- 		
 		
-		return new CommandAction(true, "main.do");
-
-		}
+		List<BoardDTO> list = new BoardDAO().listByReadcnt();
+		
+		request.setAttribute("list", list);
+		
+		return new CommandAction(false, "main.jsp");
+	}
 
 }
+

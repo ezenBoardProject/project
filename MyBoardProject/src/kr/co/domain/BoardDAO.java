@@ -530,4 +530,46 @@ public class BoardDAO {
 	}
 
 
+	public List<BoardDTO> listByReadcnt() {
+		
+		List<BoardDTO> list = new ArrayList<BoardDTO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT num, id, title, to_char(writeday, 'yyyy-mm-dd') writeday, readcnt, repRoot, repStep, repIndent "
+				+ " FROM BD_TBL WHERE readcnt > 10 ORDER BY repRoot desc, repStep asc";
+		
+		try {
+			
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				int num = rs.getInt("num");
+				String id = rs.getString("id");
+				String title = rs.getString("title");
+				String writeday = rs.getString("writeday");
+				int readcnt = rs.getInt("readcnt");
+				int repRoot = rs.getInt("repRoot");
+				int repStep = rs.getInt("repStep");
+				int repIndent = rs.getInt("repIndent");
+				
+				BoardDTO dto = new BoardDTO(id, num, title, null, writeday, readcnt, repRoot, repStep, repIndent);
+				list.add(dto);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		
+		
+		return list;
+	}
+
+
 }

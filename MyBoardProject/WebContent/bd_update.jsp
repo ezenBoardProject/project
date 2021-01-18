@@ -9,11 +9,40 @@
  <meta charset="UTF-8">
  <title>게시글 수정</title>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="initial.css" />
+    
  </head>
  <body>
+ 
+ <div id="wrapper">
+  <!-- Begin Header -->
+  <div id="header"><h1><a href="main.jsp">Update Contents</a></h1></div>
+  <!-- End Header -->
+  <!-- Begin Naviagtion -->
+  <div id="navigation">
+  
+  <c:choose>
+  		<c:when test="${empty login}">
+  			<a href="insertui.do">회원 가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  			<a href="loginui.do">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+  			<a href="bd_list.do">글 목록</a>
+  		</c:when>
+  		<c:otherwise>
+  			<a href="bd_insertui.do">글 쓰기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  			<a href="read.do?id=${login.id}">마이페이지</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  			<a href="logout.do">로그아웃</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+  			<a href="bd_list.do">글 목록</a>
+  		</c:otherwise>
+  	</c:choose>
+
+  </div>
+  <!-- End Naviagtion -->
+  <!-- Begin Content -->
+  <div id="content"> 
+ 	
  	<h2>게시글 수정</h2>
 
- <form action="bd_update.do" method="post">
+ 	<form action="bd_update.do" method="post">
  	번호: <input name="num" value="${dto.num}" readonly><p>
  	작성자: <input name="id" value="${dto.id}" readonly><p>
  	제목: <input name="title" value="${dto.title}" required><p>
@@ -39,7 +68,10 @@
 
  	</script>
 
+</div>
 
+ <div id="footer"> Copyright ⓒ Ezen TeamProject </div>
+ 
  </form>
  </body>
  </html> 

@@ -28,3 +28,6 @@ SELECT * FROM BD_TBL
 
 SELECT COUNT(num) FROM bd_tbl
 
+
+
+

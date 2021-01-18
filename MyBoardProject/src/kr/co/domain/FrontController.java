@@ -19,6 +19,7 @@ import kr.co.boardcommand.BoardMyListCommand;
 import kr.co.boardcommand.BoardSearchCommand;
 import kr.co.boardcommand.BoardUpdateCommand;
 import kr.co.boardcommand.BoardUpdateUICommand;
+import kr.co.boardcommand.MainCommand;
 import kr.co.boardcommand.ReplyCommand;
 import kr.co.boardcommand.ReplyUICommand;
 import kr.co.command.Command;
@@ -114,6 +115,8 @@ public class FrontController extends HttpServlet {
 			com = new BoardUpdateUICommand();
 		} else if (sp.equalsIgnoreCase("/bd_mylist.do")) {
 			com = new BoardMyListCommand();
+		} else if (sp.equalsIgnoreCase("/main.do")) {
+			com = new MainCommand();
 		}
 		
 		
