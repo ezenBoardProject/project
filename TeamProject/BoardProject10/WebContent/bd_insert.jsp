@@ -9,10 +9,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글쓰가</title>
+<title>글쓰기</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="initial.css" />
+	<link rel="stylesheet" type="text/css" href="bd_insertReply.css" />
 </head>
 <body>
 	<div id="header">
@@ -33,7 +33,7 @@
 			</label>
 			
 			<label>
-				<button type="button" id="button">등록 </button>
+				<input type="submit" value="등록" id="button">
 			</label>
 			
 			<label>
@@ -43,6 +43,7 @@
 		</div>
 	</form>
 
+	<div id="addfooter"> Copyright ⓒ Ezen TeamProject </div>
 
 </body>
 </html>

@@ -12,7 +12,7 @@
 <title>답글 화면</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="initial.css" />
+<link rel="stylesheet" type="text/css" href="bd_insertReply.css" />
 </head>
 <body>
 	<div id="header">
@@ -37,14 +37,13 @@
 			</label>
 			
 			<label>
-			<button type="button" id="button">답글 등록 </button>
+			<input type="submit" value="답글등록" id="replybutton">
 			</label>
 
 		</div>
 	</form>
 
-
-
+	<div id="addfooter"> Copyright ⓒ Ezen TeamProject </div>
 
 
 </body>
