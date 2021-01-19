@@ -15,7 +15,7 @@ body {
 #wrapper {
 
    display: block;
-   width: 925px;
+   width: 900px;
    background: #fff;
    margin: 0 auto;
    margin-top: 30px;
@@ -24,37 +24,37 @@ body {
 }
 
 #header {
-   width: 900px;
+   width: 700px;
    color: #333;
-   padding: 10px;
-   height: 100px;
-   margin: 10px 0px 5px 0px;
-   margin-left: 400px;
+   padding: 1px;
+   height: 50px;
+   margin: 5px 0px 5px 0px;
+   margin-left: 100px;
    margin-bottom: 20px;
-   background: #c9dff0;
+   
    font-size: 20px;
 }
 
-#header h1 {
+#header h2 {
    text-align: center;
-   margin-top: 30px;
+   margin-top: 10px;
 }
 
-#header h1 a {
+#header h2 a {
    text-decoration: none;
    font-size: 2em;
    color: #757E7F;
 }
 
 #navigation{
-   
+
    padding-top: 15px;
    padding-bottom: 15px;
    text-align: center;
 }
 
 #navigation a{
-   
+
    font-size: 1.5em;
    text-decoration: none;
    text-align: center;
@@ -62,7 +62,7 @@ body {
 }
 
 #navigation a:hover{
-   
+
    color: #98CAD2;
 }
 
@@ -70,20 +70,24 @@ body {
    width: 900px;
    color: #333;
    border: 1px solid #ccc;
-   background: #F1FBFB;
+   
    margin: 0px 0px 5px 0px;
    padding: 10px;
    height: 350px;
+   
 }
+
+
 
 
 form {
   margin: auto;
   position: relative;
-  width: 900px;
-  height: 500px;
+  bottom: 10px;
+  width: 500px;
+  height: 700px;
   font-size: 23px;
-  line-height: 24px;
+  line-height: 65px;
   font-weight: bold;
   color: #09C;
   text-decoration: none;
@@ -95,16 +99,20 @@ form {
   -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  
 }
 
 input {
+position: relative;
+ 
   width: 375px;
   display: block;
   border: 1px solid #999;
-  height: 25px;
+  height: 20px;
   -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  
 }
 
 input#title{
@@ -114,46 +122,21 @@ input#title{
   margin-bottom: 10px;
 }
 
-input#author{
-   margin-bottom: 15px;
-  width: 350px;
-  height: 35px;
-  font-size: 17px;
-}
 
-button#button{
-  margin-bottom: 5px;
-  width: 250px;
-  height: 35px;
-  font-size: 20px;
-}
 
-input#cancel{
-  width: 200px;
-  height: 35px;
-  font-size: 20px;
-  margin-top: 20px;
-}
 
-input#button{
-  margin-bottom: 25px;
-  width: 200px;
-  height: 35px;
-  font-size: 20px;
-}
 
-input#replybutton{
-  width: 200px;
-  height: 35px;
-  font-size: 20px;
-}
 
-textarea#feedback {
-  width: 700px;
-  height: 250px;
+textarea#content {
+  width: 400px;
+  height: 100px;
   display: block;
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  position: absolute;
+  bottom:250px;
+  right:70px;
+  
 }
 
 #button{
@@ -174,47 +157,29 @@ textarea#feedback {
 input.button:hover {
   background: #fff;
   color: #09C;
+    
 }
 
-#content h1{
-   text-align: center;
-   color: #757E7F;
-   margin: 0;
-}
 
-.page{
-   text-align: center;
-}
+
+
 
 #content form{
    text-align: center;
 }
 
-#b1{
-   margin-left: 410px;
+#a,a2 input{
+position: absolute;
+  bottom:220px;
+  right:90px;
+}
+#a2,a input{
+position: absolute;
+  bottom:200px;
+  right:90px;
 }
 
 
-#footer {
-   width: 900px;
-   color: #333;
-   border: 1px solid #ccc;
-   background-color: #F3F2ED;
-   margin: 0px 0px 10px 0px;
-   padding: 10px;
-}
-
-#addfooter{
-   width: 925px;
-   color: #333;
-   border: 1px solid #ccc;
-   background-color: #F3F2ED;
-   margin: 0px 0px 0px 0px;
-   margin-left: 383px;
-   margin-bottom: 30px;
-   padding: 10px;
-   font-size: 15px;
-}
 
 body { 
   background-color : #F3F8F9;
@@ -224,4 +189,31 @@ body {
   color: #585858;
   padding: 22px 10px;
   padding-bottom: 55px;
+} 
+h2{
+  text-align: center;
+  position: absolute;
+  left:-170px;
+  right:50px;
+  bottom:690px;
+  font-size: large;
+  
+}
+#footer {
+   width: 900px;
+   color: black;
+   position: absolute;
+   bottom:100px;
+   padding: 10px;
+   font-size: small;
+   left:150px;
+}
+#num{
+  left:50px;
+}
+#id{
+left:50px;
+}
+#title{
+left:60px;
 }

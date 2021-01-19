@@ -39,7 +39,7 @@ img { border: 0; max-width: 100%; }
 
 #keywords {
   margin: 0 auto;
-  font-size: 1.2em;
+  font-size: 1.5em;
   margin-bottom: 15px;
 }
 
@@ -63,12 +63,6 @@ img { border: 0; max-width: 100%; }
   background: #acc8dd;
 }
 
-#keywords thead tr th.headerSortUp span {
-  background-image: url('https://i.imgur.com/SP99ZPJ.png');
-}
-#keywords thead tr th.headerSortDown span {
-  background-image: url('https://i.imgur.com/RkA9MBo.png');
-}
 
 #keywords tbody{
 	background-color: white;
@@ -90,6 +84,6 @@ img { border: 0; max-width: 100%; }
 	text-align: center;
 }
 
-#content form{
+#content .search{
 	text-align: center;
 }

@@ -13,7 +13,7 @@
 <title>main</title>
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <link rel="stylesheet" type="text/css" href="initial.css" />
+
    <link rel="stylesheet" type="text/css" href="main.css" />
 </head>
 <body>
@@ -57,8 +57,9 @@
            </tr>
         </thead>
         <tbody>
-           <tr>
+          
            <c:forEach items="${list}" var="dto" end="5">
+            <tr>
               <td>${dto.num}</td>
               <td>
               <c:forEach begin="1" end="${dto.repIndent}">
@@ -68,8 +69,9 @@
               <td>${dto.id}</td>
               <td>${dto.readcnt}</td>
               <td>${dto.writeday}</td>
-           </c:forEach>
            </tr>
+           </c:forEach>
+          
         </tbody>
         
      </table>

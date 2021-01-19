@@ -35,7 +35,7 @@ public class InsertCommand implements Command {
 		MemberDAO dao  = new MemberDAO();
 		dao.insert(dto);
 
-		return new CommandAction(true, "list.do");
+		return new CommandAction(true, "read.do?id="+id);
 	}
 
 }
