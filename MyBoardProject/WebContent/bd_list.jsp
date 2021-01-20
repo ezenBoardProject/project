@@ -12,7 +12,6 @@
 <title>글 목록</title>
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <link rel="stylesheet" type="text/css" href="initial.css" />
    <link rel="stylesheet" type="text/css" href="bd_list.css" />
 </head>
 <body>
@@ -88,18 +87,17 @@
 			<a href="bd_list.do?curPage=${to.beginLineNum + to.perLine}">&raquo;</a>
 		</c:if>
 	</div>
-	
-	
-	<br>
-	<br>
-	<br>
+
 	<form action="bd_search.do" class="search">
-		<select name="searchOption" class="form-select form-select-sm" aria-label=".form-select-sm example">
+		<select name="searchOption">
 			<option value="id">작성자</option>
 			<option value="title">제목</option>
 			<option value="content">내용</option>
-		</select> <input name="searchKeyword"> <input type="submit" value="검색">
+		</select>
+		<input name="searchKeyword" id="key"> 
+		<input type="submit" value="검색" id="sub">
 	</form>
+
 	
 	</div>
 	

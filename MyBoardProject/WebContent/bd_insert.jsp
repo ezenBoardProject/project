@@ -59,14 +59,26 @@
          </label>
          
          <label>
-            <input type="button" onclick="location.href='bd_list.do?num=${dto.num}'" 
-            value="작성 취소" id="cancel">
+            <input type="button" value="작성 취소" id="cancel">
          </label>
       </div>
    </form>
-   <br>
 
    <div id="footer"> Copyright ⓒ Ezen TeamProject </div>
+   
+   <script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		$("#cancel").click(function(event){
+			
+			event.preventDefault();
+			history.go(-1);
+			
+		});
+	});
+
+</script>
 </div> 
 </body>
 </html>

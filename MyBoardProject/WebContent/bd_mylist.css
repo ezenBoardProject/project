@@ -16,7 +16,7 @@ body {
 #wrapper {
 
    display: block;
-   width: 925px;
+   width: 770px;
    background: #fff;
    margin: 0 auto;
    margin-top: 30px;
@@ -69,12 +69,11 @@ body {
 }
 
 #content {
-   width: 900px;
-   height: 570px;
+   width: 750px;
+   height: 500px;
    color: #333;
    border: 1px solid #ccc;
    background: #F1FBFB;
-   margin: 0px 0px 5px 0px;
    padding: 10px;
 }
 
@@ -131,7 +130,7 @@ img { border: 0; max-width: 100%; }
   margin: 0 auto;
   font-size: 1.5em;
   margin-bottom: 15px;
-  width: 800px;
+  width: 750px;
 }
 
 
@@ -192,7 +191,6 @@ content h1{
 
 .page{
    text-align: center;
-   font-size: 15px;
 }
 
 form{
@@ -203,7 +201,6 @@ form{
 
 form .search{
    text-align: center;
-   font-size: 15px;
   
 }
 

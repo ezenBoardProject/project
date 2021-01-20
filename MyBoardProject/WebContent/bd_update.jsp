@@ -15,32 +15,77 @@
  
  <div id="wrapper">
 
-    <div id="header"><h2><a>게시글 수정</a></h2></div>
+    <div id="header"><h1><a>게시글 수정</a></h1></div>
 
-  <div id="content"> 
+ <div id="navigation">
+  
+  	<c:choose>
+  		<c:when test="${empty login}">
+  			<a href="insertui.do">회원 가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  			<a href="loginui.do">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+  			<a href="bd_list.do">글 목록</a>
+  		</c:when>
+  		<c:otherwise>
+  			<a href="bd_insertui.do">글 쓰기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  			<a href="read.do?id=${login.id}">마이페이지</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  			<a href="logout.do">로그아웃</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+  			<a href="bd_list.do">글 목록</a>
+  		</c:otherwise>
+  	</c:choose>
+
+  </div>
+
+
+  <div class="content"> 
 
  <form action="bd_update.do" method="post">
-    <div id="q">번호</div> <input id="num" name="num" value="${dto.num}" readonly><p>
-    작성자 <input id="id" name="id" value="${dto.id}" readonly><p>
-    제목 <input id="title" name="title" value="${dto.title}" required><p>
-    내용  <textarea id="content" rows="5" name="content" required>${dto.content}</textarea><p>
-    <input id="a" class= "edit" type="submit" value="수정 완료">
-    <input id="a2" type="button" onclick="location.href='bd_list.do'"
-       value="돌아가기">
+ 
+ 	<label>
+ 		 <input id="title" name="title" value="${dto.title}" required>
+ 	</label>
+ 	
+ <div id="con">
+ 
+ 	<label class="lab" style="margin-top: 10px;">
 
+   		<span style="margin-left: 50px;">글 번호</span> <input id="num" name="num" value="${dto.num}" style="width: 70px;" readonly>
+    	<span>글쓴이: </span><input id="id" name="id" value="${dto.id}" readonly>
+     	<span>조회수: </span><input name="readcnt" id="readcnt" value="${dto.readcnt}" style="width: 70px;" readonly>
+        <span>작성일: </span><input name="writeday" id="writeday" value="${dto.writeday}" readonly>
+    </label>
+ </div>
+ 	<label>
+ 		 <textarea id="feedback" rows="5" name="content" required>${dto.content}</textarea>
+ 	</label>
+ 	
+ 	
+   <input class="but" class= "edit" type="submit" value="수정 완료" style="margin-left: 120px;">
+   <input class="but" id="back" type="button" value="돌아가기">
+	<input id="del" class="but" type="button" value="삭제">       
+	
  <script type="text/javascript">
        
     $(document).ready(function() {
        
-       $("input[type='submit']").click(function(event){
+       $("#back").click(function(event){
           
           event.preventDefault();
+          history.go(-1);
           
-          var id = $("input[name='id']").val();         
-          
-          $("form").submit();
-          alert("회원정보 수정이 완료되었습니다.");
-       });      
+       });
+       
+       $("#del").click(function(event) {
+
+			var choice;
+			choice = confirm("게시글을 삭제하시겠습니까?");
+
+			if (choice) {
+				location.replace("bd_delete.do?num=${dto.num}");
+			} else {
+				location.replace("bd_read.do?num=${dto.num}")
+			}
+
+			});
     });
 
     </script>

@@ -11,12 +11,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="bd_mylist.css" />
 </head>
 <body>
 
-<h1>마이게시글 목록</h1>
+<div id="wrapper">
 
-<table>
+  <div id="content"> 
+
+<table id="keywords">
    <thead>
       <tr>
          <th>글번호</th>
@@ -35,7 +38,7 @@
             <td>
                	<a href="bd_read.do?num=${dto.num}">
                   <c:forEach begin="1" end="${dto.repIndent}">
-                     &nbsp;&nbsp;
+                     &nbsp;&nbsp;re:
                   </c:forEach>
                  ${dto.title}
                </a>
@@ -52,8 +55,38 @@
 
 </table>
 
-<button onclick="location.href='read.do?if=${dto.id}'">마이페이지로 돌아가기</button>
-<button onclick="location.href='bd_list.do'">글 목록으로 돌아가기</button>
+	<div class="page">
+		<c:if test="${to.beginLineNum - to.perLine > 0 }">
+			<a href="bd_list.do?curPage=${to.beginLineNum-to.perLine}">&laquo;</a>
+		</c:if>
+		<c:if test="${to.curPage > 1 }">
+			<a href="bd_list.do?curPage=${to.curPage - 1}">&lt;</a>
+		</c:if>
+		<c:forEach var="i" end="${to.stopLineNum}" begin="${to.beginLineNum}">
+			<a class="${to.curPage == i?'itsme':'' }"
+				href="bd_list.do?curPage=${i}"> ${i} </a>
+		</c:forEach>
 
+		<c:if test="${to.curPage < to.totalPage}">
+			<a href="bd_list.do?curPage=${to.curPage + 1 }">&gt;</a>
+		</c:if>
+
+		<c:if test="${to.totalPage > to.stopLineNum}">
+			<a href="bd_list.do?curPage=${to.beginLineNum + to.perLine}">&raquo;</a>
+		</c:if>
+	</div>
+	
+
+	<form action="bd_search.do" class="search">
+		<select name="searchOption">
+			<option value="id">작성자</option>
+			<option value="title">제목</option>
+			<option value="content">내용</option>
+		</select>
+		<input name="searchKeyword" id="key"> 
+		<input type="submit" value="검색" id="sub">
+	</form>
+
+</div>
 </body>
 </html>

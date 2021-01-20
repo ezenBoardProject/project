@@ -1,7 +1,7 @@
 <%@page import="kr.co.domain.MemberDAO"%>
 <%@page import="kr.co.ezen.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -9,34 +9,36 @@
 <meta charset="UTF-8">
 <title>마이페이지</title>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <link href="read.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-	<h2>마이페이지</h2>
 
-	<a>${login.id} 님의 페이지입니다.</a>
-	<br>
-	<br>
+<div id="wrapper">
 
-	<br>
-	<input type="button"
-		onclick="location.href='updateui.do?id=${login.id}'" value="회원정보 수정">
-	<input type="button" onclick="location.href='bd_mylist.do?id=${login.id}'" value="게시글 관리">
-	<input type="button" onclick="location.href='bd_list.do'" value="돌아가기">
+	<div id="header">
+		<h1><a href="main.do">My Page</a></h1>
+	</div>
 
-	<br>
-	<br>
-	<input type="button" onclick="location.href='logout.do?id=${login.id}'"
-		value="로그아웃">
-	<br>
-	<br>
+	<div class="content">
 
-	<input class="del" type="button"
-		onclick="location.href='delete.do?id=${login.id}'" id="del"
-		value="회원 탈퇴">
-	<br>
+   <h1>${login.id} 님의 페이지입니다.</h1> <br>
 
-	<script type="text/javascript">
+   <input class="but" id="update" value="회원정보 변경" type="button" style="margin-left: 32px;">
+   <input class="but" id="mylist" value="마이게시글" type="button">
+   <input class="but" id="main" value="메인으로 가기" type="button" onclick="location.href='main.do'">
+   <input class="but" id="del" type="button"
+      onclick="location.href='delete.do?id=${login.id}'" id="del"   value="회원 탈퇴"> <br>
+  	
+   
+   <iframe></iframe>
+   
+   </div>
+  	
+  		<div id="footer">Copyright ⓒ Ezen TeamProject</div>
+	</div>
+	
+   <script type="text/javascript">
       
       $(document).ready(function(){
          
@@ -53,10 +55,22 @@
             }
             
          });
-
+         $("#update").click(function(event) {
+             event.preventDefault();
+             $("iframe").attr("src", "updateui.do?id=${login.id}").attr("width","820px").attr("height","800")
+          });
+          
+          $("#mylist").click(function(event) {
+             event.preventDefault();
+             $("iframe").attr("src", "bd_mylist.do?id=${login.id}").attr("width","820px").attr("height","500")
+          });
+         
+         
       });
-   
+
    </script>
+
+
 
 </body>
 </html>

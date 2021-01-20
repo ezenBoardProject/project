@@ -14,7 +14,6 @@ body {
 
 #wrapper {
 
-   display: block;
    width: 925px;
    background: #fff;
    margin: 0 auto;
@@ -68,12 +67,12 @@ body {
 }
 
 .content {
-   width: 900px;
+   width: 885px;
    color: #333;
    border: 1px solid #ccc;
    background: #F1FBFB;
-   padding: 25px 0px 0px 20px;
-   height: 430px;
+   padding: 25px 0px 0px 35px;
+   height: 440px;
 }
 
 
@@ -93,17 +92,21 @@ input {
   display: block;
   border: 1px solid #999;
   height: 25px;
-  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+
 }
 
 input#title{
+	
   width: 800px;
   height: 35px;
   font-size: 18px;
-  margin: 5px 0;
-
+  margin: 5px 0 25px 0;
+  border: 1px solid #999;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  background-color: white;
 }
 
 input#author{
@@ -111,6 +114,9 @@ input#author{
   width: 800px;
   height: 35px;
   font-size: 17px;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 
 }
 
@@ -119,21 +125,39 @@ button#button{
   width: 250px;
   height: 35px;
   font-size: 20px;
+  margin-top: 10px;
 }
 
 input#cancel{
-  width: 200px;
-  height: 35px;
-  font-size: 20px;
-  margin-top: 20px;
+  font-size: 15px;
+  width: 150px;
+  right: 20px;
+  bottom: 20px;
+  background: #c9dff0;
+  color: #757E7F;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid #999;   
+  margin-top: 10px;
+  margin-right: 30px;
+  display: inline-block;
 }
 
 input#button{
-  margin-bottom: 25px;
-  width: 200px;
-  height: 35px;
-  font-size: 20px;
-  float: right;
+	
+  font-size: 15px;
+  width: 150px;
+  right: 20px;
+  bottom: 20px;
+  background: #c9dff0;
+  color: #757E7F;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid #999;   
+  margin-top: 10px;
+  margin-right: 150px;
+  display: inline-block;
+  margin-left: 170px;
 }
 
 input#replybutton{
@@ -148,11 +172,15 @@ textarea#feedback {
   display: block;
   font-size: 20px;
   margin: 10px 0;
+  border: 1px solid #999;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 
 }
 
 #button{
-  width: 15px;
+
   font-size: 10px;
   width: 700px;
   right: 20px;
@@ -197,6 +225,7 @@ input.button:hover {
    background-color: #F3F2ED;
    padding: 10px;
    text-align: center;
+   margin-top: 5px;
 }
 
 

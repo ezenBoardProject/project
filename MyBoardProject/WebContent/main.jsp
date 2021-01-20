@@ -14,13 +14,13 @@
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-   <link rel="stylesheet" type="text/css" href="main.css" />
+   <link rel="stylesheet" type="text/css" href="bd_list.css" />
 </head>
 <body>
 <!-- Begin Wrapper -->
 <div id="wrapper">
   <!-- Begin Header -->
-  <div id="header"><h1><a href="main.jsp">Main Page</a></h1></div>
+  <div id="header"><h1><a href="index.jsp">Main Page</a></h1></div>
   <!-- End Header -->
   <!-- Begin Naviagtion -->
   <div id="navigation">

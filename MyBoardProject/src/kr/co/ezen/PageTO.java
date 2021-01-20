@@ -5,7 +5,7 @@ import java.util.List;
 public class PageTO {
 	
 	private int curPage = 1;
-	private int perPage = 15;
+	private int perPage = 10;
 	private int perLine = 10;
 	private int amount;
 	private int totalPage;

@@ -52,6 +52,10 @@
 						$("form").submit();
 						alert("회원정보 수정이 완료되었습니다.");
 					});
+					
+					$('.button').click(function() {
+		                  location.href = 'index.jsp';
+		               })
 
 				});
 			</script>

@@ -15,12 +15,34 @@
 <link rel="stylesheet" type="text/css" href="bd_reply.css" />
 </head>
 <body>
+
+<div id="wrapper">
    <div id="header">
-      <h1>글번호 ${param.num}의 답글 화면</h1>
+      <h1><a>Reply content : ${param.num}</a></h1>
    </div>
+   
+   <div id="navigation">
+  
+  	<c:choose>
+  		<c:when test="${empty login}">
+  			<a href="insertui.do">회원 가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  			<a href="loginui.do">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+  			<a href="bd_list.do">글 목록</a>
+  		</c:when>
+  		<c:otherwise>
+  			<a href="bd_insertui.do">글 쓰기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  			<a href="read.do?id=${login.id}">마이페이지</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  			<a href="logout.do">로그아웃</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+  			<a href="bd_list.do">글 목록</a>
+  		</c:otherwise>
+  	</c:choose>
+
+
+  </div>
 
    <form action="bd_reply.do" method="post" class="content">
-      <div>
+   
+      <div style="padding-left: 35px; width: 800px;">
          <label> <input type="hidden" name="num" value="${param.num}"
             type="text">
          </label> 
@@ -29,7 +51,7 @@
             value="${login.id}" type="text" readonly>
          </label>
          
-         <label> <span>제목</span><input name="title" id="title"><br>
+         <label> <span>제목</span><input name="title" id="title" placeholder="제목을 입력해주세요">
          </label> 
          
          <label> <span>내용</span> <textarea rows="5" name="content"
@@ -40,12 +62,30 @@
          <input type="submit" value="답글등록" id="replybutton">
          
          </label>
+         
+         <label>
+           <button id="button" >작성취소</button>
+         </label>
 
       </div>
    </form>
-   <br>
-   <div id="addfooter"> Copyright ⓒ Ezen TeamProject </div>
 
+   <div id="footer"> Copyright ⓒ Ezen TeamProject </div>
 
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		$("#button").click(function(event){
+			
+			event.preventDefault();
+			history.go(-1);
+			
+		});
+	});
+
+</script>
+
+</div>
 </body>
 </html>
