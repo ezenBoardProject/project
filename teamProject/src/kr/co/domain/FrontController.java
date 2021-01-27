@@ -1,6 +1,6 @@
 package kr.co.domain;
-
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,15 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.boardcommand.BoardContentReadCommand;
 import kr.co.boardcommand.BoardDeleteCommand;
+
 import kr.co.boardcommand.BoardInsertCommand;
 import kr.co.boardcommand.BoardInsertUICommand;
 import kr.co.boardcommand.BoardListCommand;
+import kr.co.boardcommand.BoardMainCommand;
+import kr.co.boardcommand.BoardMyListCommand;
 import kr.co.boardcommand.BoardSearchCommand;
 import kr.co.boardcommand.BoardUpdateCommand;
 import kr.co.boardcommand.BoardUpdateUICommand;
 import kr.co.boardcommand.ReplyCommand;
 import kr.co.boardcommand.ReplyUICommand;
-import kr.co.command.BoardReadCommand;
+
 import kr.co.command.Command;
 import kr.co.command.DeleteCommand;
 import kr.co.command.FindIdCommand;
@@ -106,8 +109,11 @@ public class FrontController extends HttpServlet {
 			com = new BoardUpdateCommand();
 		} else if (sp.equalsIgnoreCase("/bd_updateui.do")) {
 			com = new BoardUpdateUICommand();
-		}
-			
+		} else if (sp.equalsIgnoreCase("/main.do")) {
+			com = new BoardMainCommand();
+		} else if (sp.equalsIgnoreCase("/bd_mylist.do")) {
+			com = new BoardMyListCommand();
+		} 
 		
 		if(com != null) {
 			CommandAction action = com.execute(request, response);

@@ -3,10 +3,13 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import kr.co.command.Command;
 import kr.co.domain.BoardDAO;
 import kr.co.util.CommandAction;
 import kr.co.ezen.BoardDTO;
+import kr.co.ezen.LoginDTO;
 
 public class BoardUpdateUICommand implements Command {
 
@@ -15,7 +18,8 @@ public class BoardUpdateUICommand implements Command {
 			throws IOException, ServletException {
 		
 		String sNum = request.getParameter("num");
- 		int num = -1;
+ 		
+		int num = -1;
  		try {
  			num = Integer.parseInt(sNum);
  		} catch (NumberFormatException e) {
@@ -23,11 +27,13 @@ public class BoardUpdateUICommand implements Command {
  			e.printStackTrace();
  		}
 
+
  		BoardDTO dto = new BoardDAO().updateui(num);
 
- 		request.setAttribute("dto", dto);
-
+ 			request.setAttribute("dto", dto);
+ 
  		return new CommandAction(false, "bd_update.jsp");
+
 	}
 
 }

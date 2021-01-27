@@ -15,11 +15,12 @@ public class LogoutCommand implements Command {
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		HttpSession session = request.getSession(false);
+
 		if (session!=null) {
 			session.invalidate();
-			return new CommandAction(true, "login.jsp");
+			return new CommandAction(true, "main.do");
 		}
-		return new CommandAction(true, "login.jsp");
+		return new CommandAction(true, "main.do");
 	}
 
 }

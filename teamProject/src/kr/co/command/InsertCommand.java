@@ -22,6 +22,7 @@ public class InsertCommand implements Command {
 		String pw = request.getParameter("pw");
 		String birth = request.getParameter("birth");
 		String sTel = request.getParameter("tel");
+		String address = request.getParameter("address");
 		int tel = 0;
 		try {
 			tel = Integer.parseInt(sTel);
@@ -30,7 +31,7 @@ public class InsertCommand implements Command {
 			e.printStackTrace();
 		}
 
-		MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel);
+		MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel,address);
 
 		MemberDAO dao  = new MemberDAO();
 		dao.insert(dto);

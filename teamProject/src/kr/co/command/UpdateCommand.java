@@ -22,10 +22,10 @@ public class UpdateCommand implements Command {
 		String birth = request.getParameter("birth");
 		String email = request.getParameter("email");
 		String sTel = request.getParameter("tel");
-		
+		String address = request.getParameter("address");
 		int tel = Integer.parseInt(sTel);
 		
-		MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel);
+		MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel,address);
 	
 		new MemberDAO().update(dto);
 		

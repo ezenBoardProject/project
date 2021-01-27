@@ -14,7 +14,7 @@ public class InsertUICommand implements Command {
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		return  new CommandAction(true, "insertui.jsp");
+		return  new CommandAction(true, "insert.jsp");
 	}
 
 }

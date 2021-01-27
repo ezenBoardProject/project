@@ -32,6 +32,7 @@ id varchar2(10) primary key,
 name varchar2(20) not null,
 email varchar2(40) not null,
 pw varchar2(11) not null,
+address varchar2(100) not null,
 birth date not null,
 tel number(11) not null
 )
@@ -39,22 +40,14 @@ insert into mb_tbl values('rmh63','kim','navercom','123123','sysdate',0102632959
 select * from mb_tbl
 select id from mb_tbl where name = 'kim' and email = 'navercom'
 drop table bd_tbl
-create table bd_tbl(
-num number primary key,
-author varchar2(40) not null,
-title varchar2(40) not null,
-conten varchar2(200) not null,
-writeday date not null,
-repRoot number not null,
-repStep number not null,
-repIndent number not null
-)
+
 CREATE TABLE bd_tbl(
 	id varchar2(10) not null,
 	num NUMBER(4) PRIMARY KEY,
 	title VARCHAR2(100) NOT NULL,
 	content VARCHAR2(2000) NOT NULL,
 	writeday DATE DEFAULT SYSDATE,
+
 	readcnt NUMBER(6) DEFAULT 0,
 	repRoot NUMBER(4),
 	repStep NUMBER(4),
@@ -62,4 +55,18 @@ CREATE TABLE bd_tbl(
 	constraint fk_bd_tbl_id foreign key(id) references mb_tbl(id)
 )
 select * from bd_tbl
-select * from mb_tbl
+select * from files
+
+
+
+CREATE TABLE files(
+	fileName VARCHAR2(200),
+	fileRealName VARCHAR2(200)
+)
+
+SELECT id FROM bd_tbl WHERE num = 4
+
+SELECT ROWNUM rnum, fileName, fileRealName FROM files
+
+SELECT * FROM files
+

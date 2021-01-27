@@ -35,7 +35,7 @@ public class LoginCommand implements Command{
 			return new CommandAction(true, "loginui.do");
 		} 
 		
-		return new CommandAction(false, "list.do");
+		return new CommandAction(false, "main.do");
 	}
 
 }

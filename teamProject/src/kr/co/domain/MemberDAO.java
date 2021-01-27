@@ -194,8 +194,9 @@ public class MemberDAO {
 				String pw = rs.getString("pw");
 				String birth = rs.getString("birth");
 				int tel = rs.getInt("tel");
+				String address = rs.getString("address");
 
-				MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel);
+				MemberDTO dto = new MemberDTO(id, name, email, pw, birth, tel,address);
 				list.add(dto);
 			}
 		} catch (Exception e) {
@@ -226,8 +227,9 @@ public class MemberDAO {
 				String pw = rs.getString("pw");
 				String date = rs.getString("birth");
 				int tel = rs.getInt("tel");
+				String address = rs.getString("address");
 
-				dto = new MemberDTO(id, name, email, pw, date, tel);
+				dto = new MemberDTO(id, name, email, pw, date, tel,address);
 			}
 
 		} catch (Exception e) {
@@ -242,7 +244,7 @@ public class MemberDAO {
 	public void insert(MemberDTO dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO mb_tbl (id, name, email, pw, birth, tel) VALUES (?,?,?,?,?,?)";
+		String sql = "INSERT INTO mb_tbl (id, name, email, pw, birth, tel,address) VALUES (?,?,?,?,?,?,?)";
 		try {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -253,6 +255,7 @@ public class MemberDAO {
 			pstmt.setString(4, dto.getPw());
 			pstmt.setString(5, dto.getBirth());
 			pstmt.setInt(6, dto.getTel());
+			pstmt.setString(7, dto.getAddress());
 
 			pstmt.executeUpdate();
 
@@ -268,7 +271,7 @@ public class MemberDAO {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE mb_tbl SET name = ?, pw = ?, email = ?, birth = ?, tel = ? WHERE id = ?";
+		String sql = "UPDATE mb_tbl SET name = ?, pw = ?, email = ?, birth = ?, tel = ?, address = ? WHERE id = ?";
 		
 		try {
 			conn = dataFactory.getConnection();
@@ -279,7 +282,8 @@ public class MemberDAO {
 			pstmt.setString(3, dto.getEmail());
 			pstmt.setString(4, dto.getBirth());
 			pstmt.setInt(5, dto.getTel());
-			pstmt.setString(6, dto.getId());
+			pstmt.setString(6, dto.getAddress());
+			pstmt.setString(7, dto.getId());
 			
 			pstmt.executeUpdate();
 			
@@ -296,7 +300,7 @@ public class MemberDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT name, pw, email, to_char(birth, 'yyyy-mm-dd') birth, tel FROM mb_tbl WHERE id = ? ";
+		String sql = "SELECT name, pw, email, to_char(birth, 'yyyy-mm-dd') birth, tel,address FROM mb_tbl WHERE id = ? ";
 		
 		try {
 			
@@ -314,8 +318,8 @@ public class MemberDAO {
 				String email = rs.getString("email");
 				String birth = rs.getString("birth");
 				int tel = rs.getInt("tel");
-				
-				dto = new MemberDTO(id, name, email, pw, birth, tel);
+				String address = rs.getString("address");
+				dto = new MemberDTO(id, name, email, pw, birth, tel,address);
 			}
 			
 		} catch (Exception e) {
@@ -346,8 +350,8 @@ public class MemberDAO {
 	            String pw = rs.getString("pw");
 	            String birth = rs.getString("birth");
 	            int tel = rs.getInt("tel");   
-	            
-	            dto = new MemberDTO(id, name, email, pw, birth, tel);
+	            String address = rs.getString("address");
+	            dto = new MemberDTO(id, name, email, pw, birth, tel,address);
 	         }
 	         
 	      } catch (Exception e) {

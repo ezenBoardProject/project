@@ -23,6 +23,8 @@
     <p><input type="submit" value="로그인"></p>
     <p><a href="insertui.do">회원가입</a></p>
     <p><a href="findui.do">아이디 / 비밀번호 찾기</a></p>
+    <p><a href="main.do">메인으로 돌아가기</a></p>
+    
   </form>
 </div>
 
